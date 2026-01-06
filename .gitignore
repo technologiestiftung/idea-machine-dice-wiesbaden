@@ -3,4 +3,7 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
-**/config.h
+src/not_ur_dates.cpp
+src/not_ur_dates.h
+
+
