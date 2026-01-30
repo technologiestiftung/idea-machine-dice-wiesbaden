@@ -22,10 +22,10 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Last-Will-Message: Beim Disconnect wird "getrennt" gesendet
-    if (client.connect("espClientdice_Two", "dice/two/status", 0, true, "getrennt")) {
+    if (client.connect("espClientdice_Gelb", "dice/gelb/status", 0, true, "getrennt")) {
       Serial.println("connected");
       // Nach erfolgreicher Verbindung "verbunden" senden
-      client.publish("dice/two/status", "verbunden", true);
+      client.publish("dice/gelb/status", "verbunden", true);
       client.subscribe("esp32/input");
     } else {
       Serial.print("failed, rc=");
@@ -68,7 +68,7 @@ void sending_data()
         Serial.print("Neue Würfelseite: ");
         Serial.println(sideString);
 
-        client.publish("dice/two", sideString);
+        client.publish("dice/gelb", sideString);
     }
  
 }

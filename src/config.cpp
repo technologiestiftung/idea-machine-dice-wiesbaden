@@ -30,7 +30,7 @@ String message = "";
 String messageTemp = "";
 
 
-const char name[] = "esp32 mini two";
+const char name[] = "esp32 mini gelb";
 
 const unsigned long updateInterval = 200;
 
