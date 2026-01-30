@@ -37,7 +37,7 @@ void setup() {
 
   Serial.println("");
   Serial.println("WiFi connected");
-  Serial.print("IP-Address of ESP8266 module: ");
+  Serial.print("IP-Address of ESP32 Mini module: ");
   Serial.println(WiFi.localIP());
 
   client.setServer(mqtt_server, 1883);
@@ -50,13 +50,14 @@ void loop() {
   if (!client.connected()) {
     reconnect();
   }
+  unsigned long now = millis();
   client.loop();
 
-  readSensor();
-  sending_data();
-
-
-
+  if (now - lastSend > INTERVAL) {
+    lastSend = now;
+    readSensor();
+    sending_data();
+  }
 
 }
 

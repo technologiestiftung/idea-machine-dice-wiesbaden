@@ -1,6 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#include <Arduino.h>
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <Adafruit_MPU6050.h>
@@ -44,7 +45,12 @@ extern char sideString [4];
 extern int side;
 extern sensors_event_t a, g, temp;
 
+extern float last_x, last_y, last_z;
+extern float total_movement;
 
+extern unsigned long startTime;
+const unsigned long INTERVAL;
+unsigned long now;
 
 #endif
 

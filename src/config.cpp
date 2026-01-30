@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "config.h"
 
 // Hier werden die Variablen *definiert* (nur einmal!)
@@ -30,7 +31,7 @@ String message = "";
 String messageTemp = "";
 
 
-const char name[] = "esp32 mini gelb";
+const char name[] = "esp32 mini pink";
 
 const unsigned long updateInterval = 200;
 
@@ -38,3 +39,9 @@ sensors_event_t a, g, temp;
 
 int side = 0;
 char sideString [4];
+float last_x = 0, last_y = 0, last_z = 0;
+float total_movement = 0;
+
+unsigned long lastSend = 0;
+const unsigned long INTERVAL = 2000;
+unsigned long now = 0;

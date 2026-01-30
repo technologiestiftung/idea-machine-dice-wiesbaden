@@ -22,10 +22,10 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Last-Will-Message: Beim Disconnect wird "getrennt" gesendet
-    if (client.connect("espClientdice_Gelb", "dice/gelb/status", 0, true, "getrennt")) {
+    if (client.connect("espClientdice_Pink", "dice/pink/status", 0, true, "getrennt")) {
       Serial.println("connected");
       // Nach erfolgreicher Verbindung "verbunden" senden
-      client.publish("dice/gelb/status", "verbunden", true);
+      client.publish("dice/pink/status", "verbunden", true);
       client.subscribe("esp32/input");
     } else {
       Serial.print("failed, rc=");
@@ -60,15 +60,25 @@ void readSensor()
 
 void sending_data()
 {
-    if (side != last_side) {
-
-        last_side = side;
-        itoa(side, sideString, 10);
-
-        Serial.print("Neue Würfelseite: ");
-        Serial.println(sideString);
-
-        client.publish("dice/gelb", sideString);
-    }
+    
+  itoa(side, sideString, 10);
+  Serial.print("Neue Würfelseite: ");
+  Serial.println(sideString);
+  client.publish("dice/pink", sideString);
  
+}
+
+void diceing ()
+{
+    total_movement =
+      abs(a.acceleration.x - last_x) +
+      abs(a.acceleration.y - last_y) +
+      abs(a.acceleration.z - last_z);
+
+  last_x = a.acceleration.x;
+  last_y = a.acceleration.y;
+  last_z = a.acceleration.z;
+
+  Serial.print("total_movement: ");
+  Serial.println(total_movement);
 }
