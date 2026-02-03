@@ -8,6 +8,6 @@ void callback(char* topic, byte* message, unsigned int length);
 void reconnect();
 void readSensor();
 void sending_data();
-#void diceing ();
+void diceing ();
 
 #endif

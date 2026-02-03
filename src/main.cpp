@@ -50,14 +50,31 @@ void loop() {
   if (!client.connected()) {
     reconnect();
   }
-  unsigned long now = millis();
   client.loop();
+  readSensor();
+  diceing();
 
-  if (now - lastSend > INTERVAL) {
-    lastSend = now;
-    readSensor();
+  if (firstReading && side >= 1 && side <= 6) {
     sending_data();
+    last_side = side;
+    firstReading = false;
+    Serial.println("First reading sent!");
+    return;  // Springe zum nächsten Loop-Durchlauf
   }
+
+  if (total_movement > 5.0) {
+    isMoving = true;
+    lastMovementTime = millis();
+  } 
+  else if (isMoving && (millis() - lastMovementTime) > SETTLE_TIME) {
+    if (side != last_side && side != 0) {
+      sending_data();
+      last_side = side;
+    }
+    isMoving = false;
+  }
+  
+  delay(50);
 
 }
 

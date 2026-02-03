@@ -31,7 +31,7 @@ String message = "";
 String messageTemp = "";
 
 
-const char name[] = "esp32 mini pink";
+const char name[] = "esp32 mini gelb";
 
 const unsigned long updateInterval = 200;
 
@@ -44,4 +44,8 @@ float total_movement = 0;
 
 unsigned long lastSend = 0;
 const unsigned long INTERVAL = 2000;
-unsigned long now = 0;
+
+unsigned long lastMovementTime = 0;
+extern bool firstReading = true;
+extern bool isMoving = false;
+extern const unsigned long SETTLE_TIME = 100;

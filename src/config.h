@@ -48,10 +48,14 @@ extern sensors_event_t a, g, temp;
 extern float last_x, last_y, last_z;
 extern float total_movement;
 
-extern unsigned long startTime;
-const unsigned long INTERVAL;
-unsigned long now;
+extern unsigned long lastSend;
+extern const unsigned long INTERVAL;
 
+extern bool firstReading;
+extern bool isMoving;
+
+extern unsigned long lastMovementTime;
+extern const unsigned long SETTLE_TIME;
 #endif
 
 
