@@ -46,6 +46,6 @@ unsigned long lastSend = 0;
 const unsigned long INTERVAL = 2000;
 
 unsigned long lastMovementTime = 0;
-extern bool firstReading = true;
-extern bool isMoving = false;
-extern const unsigned long SETTLE_TIME = 100;
+bool firstReading = true;
+bool isMoving = false;
+const unsigned long SETTLE_TIME = 100;
